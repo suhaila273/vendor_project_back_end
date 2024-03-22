@@ -1,5 +1,7 @@
 const express=require("express")
 
+const otpController=require("../controllers/otp.controller")
+
 const router=express.Router()
 const userModel=require("../Models/userModel")
 
@@ -62,6 +64,23 @@ router.post("/login",async(req,res)=>{
         status : "success","userdata":data
     })
 })
+
+//forgot password resetting
+
+router.post("/otp-reset-password",otpController.otpReset);
+router.post("/otp-verify",otpController.verifyOTP);
+
+router.post("/change_password",async(req,res)=>{
+    const {email,password}=req.body;
+    const hashPassword=await hashPasswordGenerator(password)
+    await userModel.updateOne(
+        {"email":email},
+        {$set:{"password":hashPassword}}
+    );
+    return res.json({message:"Success"});
+
+});
+
 
 
 module.exports=router
