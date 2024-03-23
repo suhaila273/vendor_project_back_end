@@ -4,7 +4,7 @@ const mongoose=require("mongoose")
 
 const userRoute=require("./controllers/userRouter")
 const categoryRoute=require("./controllers/categoryRouter")
-const productRoute=require("./controllers/productRouter")
+const productRoute=require("./controllers/proRouter")
 
 const app=express()
 
