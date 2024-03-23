@@ -34,6 +34,8 @@ const upload = multer({
     { name: 'product_img', maxCount: 10 } // Allowing up to 10 image files for product images
 ]);
 
+//API to upload product details
+
 router.post('/product_upload', (req, res) => {
     upload(req, res, (err) => {
         if (err) {
@@ -158,18 +160,15 @@ router.delete('/delete_product/:id', async (req, res) => {
     const productId = req.params.id;
 
     try {
-        // Find the product by ID and remove it from the database
         const deletedProduct = await productModel.findByIdAndDelete(productId);
 
         if (!deletedProduct) {
-            // If the product with the given ID is not found, return a 404 Not Found response
             return res.status(404).json({ message: 'Product not found' });
         }
 
-        // Return a success message indicating the product was deleted successfully
         res.status(200).json({ message: 'Product deleted successfully', deletedProduct });
     } catch (error) {
-        // If an error occurs during the deletion process, return a 500 Internal Server Error response
+    
         console.error('Error deleting product:', error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
