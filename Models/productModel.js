@@ -38,6 +38,14 @@ const ProductSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    stock:{
+        type:String,
+        required:true
+    },
+    quantity:{
+        type:String,
+        required:true
+    },
     fssai:{
         type:String,
         required:true
@@ -46,14 +54,6 @@ const ProductSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    stock:{
-        type:String,
-        required:true
-    },
-    quantity:{
-        type:String,
-        required:true
-    }
     
 })
 module.exports=mongoose.model('products',ProductSchema)
