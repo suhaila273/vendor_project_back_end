@@ -36,7 +36,7 @@ const ProductSchema=mongoose.Schema({
     },
     video_link:{
         type:String,
-        required:true
+        //required:true
     },
     stock:{
         type:String,
